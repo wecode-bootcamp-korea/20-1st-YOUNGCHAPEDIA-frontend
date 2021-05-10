@@ -27,3 +27,19 @@ $comment-background: #f2f2f2;
 $comment-header-icon: #4a4a4a;
 $comment-bottom-icon: #787878;
 $section-aside-text: #a0a0a0;
+//로그인 페이지
+$wrong-red: #f50900;
+$wrong-background: #fff0f0;
+
+@mixin flexSet($just: center, $align: center) {
+  display: flex;
+  justify-content: $just;
+  align-items: $align;
+}
+
+@mixin flexColumnSet($just: center, $align: center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $just;
+  align-items: $align;
+}
