@@ -1,18 +1,20 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import './Login-SignIn.scss';
 import API_URLS from '../../config';
+import './Login-SignIn.scss';
 
 export default class SignIn extends Component {
   constructor(props) {
     super(props);
-    //css 확인용
     this.state = {
       id: '',
       pw: '',
       name: '',
       hidden: false,
+      isIdValid: true,
+      isPwValid: true,
+      isNameValid: true,
     };
   }
 
@@ -25,9 +27,7 @@ export default class SignIn extends Component {
   }
 
   closeModal = e => {
-    // const isModalClicked = true;
     if (e.target === document.body) {
-      console.log(true);
       this.setState({ hidden: true });
     }
   };
@@ -49,23 +49,34 @@ export default class SignIn extends Component {
       })
       .then(res => {
         if (res) {
-          console.log(res);
           // save localstroage
           // localStorage.setItem('TOKEN', res['ACCESS TOKEN']);
           // push to main
           // this.props.history.push('/');
+        } else {
+          alert('로그인 하세요');
         }
-        // else {
-        //   alert('로그인 하세요');
-        // }
       });
   };
 
   handleInput = e => {
     const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        if (name === 'id') {
+          this.checkIdValid();
+        }
+        if (name === 'pw') {
+          this.checkPwValid();
+        }
+        if (name === 'name') {
+          this.checkNameValid();
+        }
+      }
+    );
   };
 
   handleDeleteBtn = e => {
@@ -75,23 +86,47 @@ export default class SignIn extends Component {
     });
   };
 
-  render() {
-    const { id, pw, name, hidden } = this.state;
-    const { handleInput, requestSignIn, handleDeleteBtn } = this;
+  checkIdValid = () => {
+    const { id } = this.state;
+    const checkIdCondition =
+      /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    const isIdValid = checkIdCondition.test(id);
+    this.setState({
+      isIdValid,
+    });
+  };
+
+  checkPwValid = () => {
+    const { pw } = this.state;
     const checkChars = /(?=.*[A-Za-z])/;
     const checkNums = /(?=.*\d)/;
     const checkMarks = /(?=.*[$@$!%*#?&])/;
     const checkCounts = /^[A-Za-z\d$@$!%*#?&]{10,}$/;
-    const checkIdCondition =
-      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    const isIdValid = checkIdCondition.test(id);
     const isPwValid =
       checkCounts.test(pw) &&
       [checkChars.test(pw), checkNums.test(pw), checkMarks.test(pw)].filter(
         Boolean
       ).length >= 2;
+
+    this.setState({
+      isPwValid,
+    });
+  };
+
+  checkNameValid = () => {
+    const { name } = this.state;
     const isNameValid = name.length > 1;
-    const isInfoAllValid = isIdValid && isPwValid && isNameValid;
+    this.setState({
+      isNameValid,
+    });
+  };
+
+  render() {
+    const { id, pw, name, hidden, isIdValid, isPwValid, isNameValid } =
+      this.state;
+    const { handleInput, requestSignIn, handleDeleteBtn } = this;
+    const isInfoAllValid =
+      isIdValid && isPwValid && isNameValid && id && pw && name;
 
     return (
       <>
@@ -133,9 +168,6 @@ export default class SignIn extends Component {
               <p className={isNameValid || 'warningText'}>
                 정확하지 않은 이름입니다.
               </p>
-              {/* <p className={isNameValid || 'warningText'}>
-                이름을 입력해주셔야 합니다.
-              </p> */}
             </div>
             <div className={`inputDiv ${isIdValid || 'warningInputDiv'}`}>
               <label className={`inputLabel ${isIdValid || 'warningLabel'}`}>
@@ -198,7 +230,7 @@ export default class SignIn extends Component {
               회원가입
             </button>
             <p className="suggestSignIn suggestLogin">
-              이미 가입하셨나요?<a className="loginSignInLink">로그인</a>
+              이미 가입하셨나요?<span className="loginSignInLink">로그인</span>
             </p>
           </form>
         </div>

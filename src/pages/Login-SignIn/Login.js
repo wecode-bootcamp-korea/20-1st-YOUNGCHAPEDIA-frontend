@@ -1,18 +1,19 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import API_URLS from '../../config';
 import './Login-SignIn.scss';
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
-    //css 확인용
     this.state = {
       id: '',
       pw: '',
       hidden: false,
+      isIdValid: true,
+      isPwValid: true,
     };
-    this.modalRef = createRef();
   }
 
   componentDidMount() {
@@ -24,9 +25,7 @@ export default class Login extends Component {
   }
 
   closeModal = e => {
-    // const isModalClicked = true;
     if (e.target === document.body) {
-      console.log(true);
       this.setState({ hidden: true });
     }
   };
@@ -47,9 +46,8 @@ export default class Login extends Component {
       })
       .then(res => {
         if (res) {
-          console.log(res.token);
           // save localstroage
-          // localStorage.setItem('TOKEN', res['ACCESS TOKEN']);
+          // localStorage.setItem('TOKEN', res.token);
           // push to main
           // this.props.history.push('/');
         } else {
@@ -60,9 +58,19 @@ export default class Login extends Component {
 
   handleInput = e => {
     const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
+    this.setState(
+      {
+        [name]: value,
+      },
+      () => {
+        if (name === 'id') {
+          this.checkIdValid();
+        }
+        if (name === 'pw') {
+          this.checkPwValid();
+        }
+      }
+    );
   };
 
   handleDeleteBtn = e => {
@@ -72,23 +80,37 @@ export default class Login extends Component {
     });
   };
 
-  render() {
-    const { id, pw, hidden } = this.state;
-    const { handleInput, requestLogin, handleDeleteBtn } = this;
+  checkIdValid = () => {
+    const { id } = this.state;
+    const checkIdCondition =
+      /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    const isIdValid = checkIdCondition.test(id);
+    this.setState({
+      isIdValid,
+    });
+  };
+
+  checkPwValid = () => {
+    const { pw } = this.state;
     const checkChars = /(?=.*[A-Za-z])/;
     const checkNums = /(?=.*\d)/;
     const checkMarks = /(?=.*[$@$!%*#?&])/;
     const checkCounts = /^[A-Za-z\d$@$!%*#?&]{10,}$/;
-    const checkIdCondition =
-      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    const isIdValid = checkIdCondition.test(id);
     const isPwValid =
       checkCounts.test(pw) &&
       [checkChars.test(pw), checkNums.test(pw), checkMarks.test(pw)].filter(
         Boolean
       ).length >= 2;
-    const isIdPwBothValid = isIdValid && isPwValid;
 
+    this.setState({
+      isPwValid,
+    });
+  };
+
+  render() {
+    const { id, pw, hidden, isIdValid, isPwValid } = this.state;
+    const { handleInput, requestLogin, handleDeleteBtn } = this;
+    const isIdPwBothValid = isIdValid && isPwValid && id && pw;
     return (
       <>
         <div
@@ -164,7 +186,8 @@ export default class Login extends Component {
             </button>
             <p className="lostPassword">비밀번호를 잊어버리셨나요?</p>
             <p className="suggestSignIn">
-              계정이 없으신가요?<a className="signInLink">회원가입</a>
+              계정이 없으신가요?
+              <span className="loginSignInLink">회원가입</span>
             </p>
           </form>
         </div>
