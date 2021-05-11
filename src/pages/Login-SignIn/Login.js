@@ -33,28 +33,29 @@ export default class Login extends Component {
 
   requestLogin = e => {
     e.preventDefault();
-    //   fetch(API_URLS.LOGIN, {
-    //     method: 'POST',
-    //     body: JSON.stringify({
-    //       email: this.state.id,
-    //       password: this.state.pw,
-    //     }),
-    //   })
-    //     .then(res => {
-    //       if (res.status === 200) {
-    //         return res.json();
-    //       }
-    //     })
-    //     .then(res => {
-    //       if (res) {
-    //         // save localstroage
-    //         localStorage.setItem('TOKEN', res['ACCESS TOKEN']);
-    //         // push to main
-    //         this.props.history.push('/');
-    //       } else {
-    //         alert('로그인 하세요');
-    //       }
-    //     });
+    fetch(API_URLS.SIGNIN, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: this.state.id,
+        password: this.state.pw,
+      }),
+    })
+      .then(res => {
+        if (res.status === 200) {
+          return res.json();
+        }
+      })
+      .then(res => {
+        if (res) {
+          console.log(res.token);
+          // save localstroage
+          // localStorage.setItem('TOKEN', res['ACCESS TOKEN']);
+          // push to main
+          // this.props.history.push('/');
+        } else {
+          alert('로그인 하세요');
+        }
+      });
   };
 
   handleInput = e => {

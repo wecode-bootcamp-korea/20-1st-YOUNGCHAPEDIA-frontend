@@ -2,6 +2,8 @@ import React, { Component, createRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import './Login-SignIn.scss';
+import API_URLS from '../../config';
+
 export default class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -31,29 +33,32 @@ export default class SignIn extends Component {
   };
 
   requestSignIn = e => {
-    // e.preventDefault();
-    //   fetch(API_URLS.LOGIN, {
-    //     method: 'POST',
-    //     body: JSON.stringify({
-    //       email: this.state.id,
-    //       password: this.state.pw,
-    //     }),
-    //   })
-    //     .then(res => {
-    //       if (res.status === 200) {
-    //         return res.json();
-    //       }
-    //     })
-    //     .then(res => {
-    //       if (res) {
-    //         // save localstroage
-    //         localStorage.setItem('TOKEN', res['ACCESS TOKEN']);
-    //         // push to main
-    //         this.props.history.push('/');
-    //       } else {
-    //         alert('로그인 하세요');
-    //       }
-    //     });
+    e.preventDefault();
+    fetch(API_URLS.SIGNUP, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: this.state.id,
+        password: this.state.pw,
+        name: this.state.name,
+      }),
+    })
+      .then(res => {
+        if (res.status === 200) {
+          return res.json();
+        }
+      })
+      .then(res => {
+        if (res) {
+          console.log(res);
+          // save localstroage
+          // localStorage.setItem('TOKEN', res['ACCESS TOKEN']);
+          // push to main
+          // this.props.history.push('/');
+        }
+        // else {
+        //   alert('로그인 하세요');
+        // }
+      });
   };
 
   handleInput = e => {
@@ -87,7 +92,6 @@ export default class SignIn extends Component {
       ).length >= 2;
     const isNameValid = name.length > 1;
     const isInfoAllValid = isIdValid && isPwValid && isNameValid;
-    console.log(id, pw, name);
 
     return (
       <>
