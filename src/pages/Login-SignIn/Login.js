@@ -11,8 +11,6 @@ export default class Login extends Component {
       id: '',
       pw: '',
       hidden: false,
-      isIdValid: true,
-      isPwValid: true,
     };
   }
 
@@ -58,19 +56,9 @@ export default class Login extends Component {
 
   handleInput = e => {
     const { name, value } = e.target;
-    this.setState(
-      {
-        [name]: value,
-      },
-      () => {
-        if (name === 'id') {
-          this.checkIdValid();
-        }
-        if (name === 'pw') {
-          this.checkPwValid();
-        }
-      }
-    );
+    this.setState({
+      [name]: value,
+    });
   };
 
   handleDeleteBtn = e => {
@@ -82,34 +70,43 @@ export default class Login extends Component {
 
   checkIdValid = () => {
     const { id } = this.state;
-    const checkIdCondition =
-      /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    const isIdValid = checkIdCondition.test(id);
-    this.setState({
-      isIdValid,
-    });
+    let isIdValid = true;
+    if (id) {
+      const checkIdCondition =
+        /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+      isIdValid = checkIdCondition.test(id);
+      return isIdValid;
+    } else return isIdValid;
   };
 
   checkPwValid = () => {
     const { pw } = this.state;
-    const checkChars = /(?=.*[A-Za-z])/;
-    const checkNums = /(?=.*\d)/;
-    const checkMarks = /(?=.*[$@$!%*#?&])/;
-    const checkCounts = /^[A-Za-z\d$@$!%*#?&]{10,}$/;
-    const isPwValid =
-      checkCounts.test(pw) &&
-      [checkChars.test(pw), checkNums.test(pw), checkMarks.test(pw)].filter(
-        Boolean
-      ).length >= 2;
-
-    this.setState({
-      isPwValid,
-    });
+    let isPwValid = true;
+    if (pw) {
+      const checkChars = /(?=.*[A-Za-z])/;
+      const checkNums = /(?=.*\d)/;
+      const checkMarks = /(?=.*[$@$!%*#?&])/;
+      const checkCounts = /^[A-Za-z\d$@$!%*#?&]{10,}$/;
+      isPwValid =
+        checkCounts.test(pw) &&
+        [checkChars.test(pw), checkNums.test(pw), checkMarks.test(pw)].filter(
+          Boolean
+        ).length >= 2;
+      return isPwValid;
+    } else return isPwValid;
   };
 
   render() {
-    const { id, pw, hidden, isIdValid, isPwValid } = this.state;
-    const { handleInput, requestLogin, handleDeleteBtn } = this;
+    const { id, pw, hidden } = this.state;
+    const {
+      handleInput,
+      requestLogin,
+      handleDeleteBtn,
+      checkIdValid,
+      checkPwValid,
+    } = this;
+    const isIdValid = checkIdValid();
+    const isPwValid = checkPwValid();
     const isIdPwBothValid = isIdValid && isPwValid && id && pw;
     return (
       <>
