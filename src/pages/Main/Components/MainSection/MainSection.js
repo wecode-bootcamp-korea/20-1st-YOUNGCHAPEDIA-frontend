@@ -10,7 +10,7 @@ export default class MainSection extends React.Component {
   }
 
   componentDidMount() {
-    fetch('받을 API 주소', {
+    fetch('http://localhost:3000/data/MainMockData.json', {
       method: 'GET',
     })
       .then(res => res.json())
@@ -22,27 +22,26 @@ export default class MainSection extends React.Component {
   }
 
   render() {
+    const { movieInfomationList } = this.state;
     return (
       <section className="mainSection">
         <div className="mainTitle">
           <p>박스오피스 순위</p>
         </div>
         <section className="mainMovie">
-          <button>이전</button>
           <ul>
             {movieInfomationList.map(movie => {
               return (
                 <MainSectionMovieList
-                  id={movie.id}
+                  key={movie.id}
                   title={movie.korean_title}
                   country={movie.country}
                   releaseDate={movie.release_date}
-                  thumbnailImg={movie.thumbnail_img}
+                  thumbnailImgUrl={movie.thumbnail_img}
                 />
               );
             })}
           </ul>
-          <button>다음</button>
         </section>
       </section>
     );
