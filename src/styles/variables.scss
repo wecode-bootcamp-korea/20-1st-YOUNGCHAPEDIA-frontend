@@ -37,7 +37,6 @@ $correct-green: #2bc3b9;
   justify-content: $just;
   align-items: $align;
 }
-
 @mixin flexColumnSet($just: center, $align: center) {
   display: flex;
   flex-direction: column;
