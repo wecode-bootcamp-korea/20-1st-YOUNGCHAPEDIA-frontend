@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.loginSignInModalContainer {
+  z-index: 999;
+  @include flexSet;
+  height: 100vh;
+}
+
+.loginSignInModal {
+  // z-index: 500;
+  @include flexColumnSet;
+  padding: 40px 0;
+  width: 375px;
+  height: 636px;
+  background-color: $white;
+  border: 1px solid $line;
+  border-radius: 7px;
+}
+
+.loginSignModalBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
