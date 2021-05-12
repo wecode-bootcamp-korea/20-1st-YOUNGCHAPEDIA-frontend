@@ -1,0 +1,98 @@
+@import '../../styles/variables.scss';
+
+.evaluationSection {
+  @include flexColumnSet;
+  width: 100%;
+  height: 100vh;
+  padding-top: 80px;
+  background-color: #f8f8f8;
+
+  .evaluationHeader {
+    border: 1px solid $line;
+    border-radius: 8px;
+    @include flexColumnSet;
+    height: 183px;
+    width: 640px;
+    padding: 20px 10px;
+    background-color: white;
+
+    .evaluationCount {
+      height: 43px;
+      font-size: 25px;
+      font-weight: 700;
+      color: black;
+    }
+    .hurryText {
+      height: 43px;
+      font-size: 15px;
+      color: $movie-info-text;
+    }
+    .evaluationMenu {
+      height: 43px;
+      width: 100%;
+      color: $movie-info-text;
+      text-align: center;
+      ul {
+        @include flexSet;
+        border-bottom: 1px solid $line;
+      }
+      li {
+        @include flexSet;
+        width: 33%;
+        font-size: 15px;
+        margin-bottom: 15px;
+      }
+    }
+    .evaluationCategory {
+      @include flexSet(flex-start, none);
+      button {
+        display: inline-block;
+        font-size: 15px;
+        color: $comment-header-icon;
+      }
+    }
+  }
+
+  .evaluationList {
+    @include flexColumnSet;
+    width: 640px;
+    border: 1px solid $line;
+    overflow-y: scroll;
+    background-color: white;
+
+    li {
+      @include flexSet(flex-start);
+      width: 640px;
+      padding: 10px 20px;
+      border-bottom: 1px solid $line;
+
+      img {
+        width: 74px;
+        height: 108px;
+        margin-right: 10px;
+      }
+
+      .movieInfos {
+        width: 100%;
+
+        .movieInfoColumn {
+          .evaluationMovieTitle {
+            @include flexSet(space-between);
+            span:first-of-type {
+              font-size: 17px;
+            }
+          }
+
+          .movieYearCountry {
+            font-size: 14px;
+            margin-top: 8px;
+          }
+
+          &:last-of-type {
+            margin-top: 30px;
+          }
+        }
+      }
+    }
+  }
+}
