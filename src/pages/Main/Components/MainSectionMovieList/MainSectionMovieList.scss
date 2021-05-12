@@ -29,23 +29,23 @@
     opacity: 0.9;
   }
 
-  .listDes {
+  .listDescription {
     margin: 5px 10px 0 0;
 
-    .listDesTitle {
+    .listDescriptionTitle {
       margin: 5px 0px 7px;
       font-size: 16px;
       font-weight: 700;
       color: $list-main-gray;
     }
 
-    .listDesYear {
+    .listDescriptionYear {
       margin-bottom: 5px;
       font-size: 14px;
       color: $list-main-gray;
     }
 
-    .listDesGrade {
+    .listDescriptionGrade {
       margin: 2px 0 0;
       font-size: 14px;
       color: $list-sub-gray;
