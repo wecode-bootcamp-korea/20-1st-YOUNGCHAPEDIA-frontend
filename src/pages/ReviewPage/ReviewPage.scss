@@ -1,0 +1,136 @@
+@import '../../styles/variables.scss';
+
+.reviewSection {
+  @include flexColumnSet;
+  padding-top: 100px;
+  width: 100%;
+  overflow: hidden;
+  background-color: $section-background;
+
+  .reviewHeader {
+    @include flexColumnSet(space-between);
+    width: 640px;
+    background-color: white;
+    border: 1px solid $line;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    .reviewCount {
+      margin-top: 20px;
+      height: 43px;
+      color: black;
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .reviewNotice {
+      height: 43px;
+      color: $movie-info-text;
+      font-size: 15px;
+    }
+
+    .reviewMenu {
+      width: 100%;
+      height: 43px;
+      color: $movie-info-text;
+      text-align: center;
+
+      ul {
+        @include flexSet;
+
+        li {
+          position: relative;
+          @include flexSet;
+          margin-bottom: 10px;
+          width: 33%;
+          font-size: 15px;
+
+          button:hover {
+            color: #fa2f6e;
+            border-bottom-color: #fa2f6e;
+
+            &:after {
+              content: '';
+              position: absolute;
+              left: 0;
+              bottom: -22px;
+              width: 200px;
+              height: 2px;
+              background: #fa2f6e;
+            }
+          }
+        }
+      }
+    }
+
+    .reviewCategory {
+      @include flexSet(none);
+      width: 100%;
+      height: 48px;
+      border-top: 1px solid $line;
+
+      div {
+        @include flexSet(flex-start);
+      }
+
+      .reviewCategoryBtn {
+        padding-left: 20px;
+        color: $comment-header-icon;
+        font-size: 15px;
+      }
+    }
+  }
+
+  .reviewList {
+    @include flexColumnSet;
+    width: 640px;
+    height: 120vh;
+    background-color: white;
+    border: 1px solid $line;
+    border-top: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    ul {
+      height: 100%;
+
+      li {
+        @include flexSet(flex-start);
+        padding: 10px 20px;
+        width: 640px;
+        border-bottom: 1px solid $line;
+
+        img {
+          margin-right: 10px;
+          width: 74px;
+          height: 108px;
+        }
+      }
+
+      .movieInfos {
+        width: 100%;
+
+        .movieInfoColumn {
+          &:last-of-type {
+            margin-top: 30px;
+            color: $star-blank;
+          }
+
+          .reviewMovieTitle {
+            @include flexSet(space-between);
+
+            span:first-of-type {
+              font-size: 17px;
+            }
+          }
+
+          .movieYearCountry {
+            margin-top: 8px;
+            color: $info-sub-text;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

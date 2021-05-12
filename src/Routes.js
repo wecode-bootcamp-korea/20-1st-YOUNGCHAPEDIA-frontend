@@ -6,7 +6,7 @@ import Footer from './pages/CommonComponents/Footer';
 // import login
 // import mypage
 import Navbar from './pages/CommonComponents/Navbar';
-import EvaluationPage from './pages/EvaluationPage/EvaluationPage';
+import ReviewPage from './pages/ReviewPage/ReviewPage';
 
 class Routes extends React.Component {
   render() {
@@ -15,12 +15,11 @@ class Routes extends React.Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Main}></Route>
-          <Route exact path="/review" component={EvaluationPage}></Route>
-
+          <Route exact path="/review" component={ReviewPage}></Route>
           {/* <Route exact path="/contents" component={}></Route> */}
           {/* <Route exact path="/myPage" component={}></Route> */}
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     );
   }
