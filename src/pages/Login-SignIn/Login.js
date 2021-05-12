@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import API_URLS from '../../config';
@@ -12,6 +12,7 @@ export default class Login extends Component {
       pw: '',
       hidden: false,
     };
+    this.modalRef = createRef();
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ export default class Login extends Component {
   }
 
   closeModal = e => {
-    if (e.target === document.body) {
+    if (e.target === this.modalRef.current) {
       this.setState({ hidden: true });
     }
   };
@@ -109,10 +110,8 @@ export default class Login extends Component {
     const isPwValid = checkPwValid();
     const isIdPwBothValid = isIdValid && isPwValid && id && pw;
     return (
-      <>
-        <div
-          className={`loginSignInModal ${hidden && 'loginSignInModalHidden'}`}
-        >
+      <div className="loginSignInModalContainer">
+        <div className={`loginSignInModal ${hidden && 'hidden'}`}>
           <header>
             <h1>
               <span>YOUGNCHA</span>
@@ -132,14 +131,12 @@ export default class Login extends Component {
                   value={id}
                 />
                 <button
-                  className={`deleteBtnHidden ${isIdValid || 'deleteBtn'}`}
+                  className={`hidden ${isIdValid || 'deleteBtn'}`}
                   onClick={handleDeleteBtn}
                 >
                   <FontAwesomeIcon icon={faTimes} />
                 </button>
-                <span
-                  className={`warningIconHidden ${isIdValid || 'warningIcon'}`}
-                >
+                <span className={`hidden ${isIdValid || 'warningIcon'}`}>
                   !
                 </span>
               </label>
@@ -158,14 +155,12 @@ export default class Login extends Component {
                   value={pw}
                 />
                 <button
-                  className={`deleteBtnHidden ${isPwValid || 'deleteBtn'}`}
+                  className={`hidden ${isPwValid || 'deleteBtn'}`}
                   onClick={handleDeleteBtn}
                 >
                   <FontAwesomeIcon icon={faTimes} />
                 </button>
-                <span
-                  className={`warningIconHidden ${isPwValid || 'warningIcon'}`}
-                >
+                <span className={`hidden ${isPwValid || 'warningIcon'}`}>
                   !
                 </span>
               </label>
@@ -189,9 +184,10 @@ export default class Login extends Component {
           </form>
         </div>
         <div
-          className={`loginSignModalBg ${hidden && 'loginSignInModalHidden'}`}
+          ref={this.modalRef}
+          className={`loginSignModalBg ${hidden && 'hidden'}`}
         />
-      </>
+      </div>
     );
   }
 }

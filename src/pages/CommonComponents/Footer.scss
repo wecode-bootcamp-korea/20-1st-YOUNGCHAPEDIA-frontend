@@ -3,7 +3,6 @@
 .commonFooter {
   @include flexColumnSet;
   background-color: black;
-  // width: 100%;
 
   .evaluationFooter {
     @include flexSet;
