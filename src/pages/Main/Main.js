@@ -1,7 +1,9 @@
 import React from 'react';
 import MainSection from './Components/MainSection/MainSection';
 import './Main.scss';
-export default class Main extends React.Component {
+import { withRouter } from 'react-router-dom';
+
+class Main extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -61,6 +63,7 @@ export default class Main extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <>
         {this.state.movieInformationList && (
@@ -69,6 +72,7 @@ export default class Main extends React.Component {
               (listElement, movieTitleindex) => {
                 return (
                   <MainSection
+                    goToDetailPage={this.goToDetailPage}
                     movieInformationList={listElement}
                     movieTitleIndex={movieTitleindex}
                   />
@@ -81,3 +85,5 @@ export default class Main extends React.Component {
     );
   }
 }
+
+export default withRouter(Main);

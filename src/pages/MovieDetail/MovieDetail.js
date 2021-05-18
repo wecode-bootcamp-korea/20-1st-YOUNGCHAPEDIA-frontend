@@ -7,6 +7,7 @@ import './MovieDetail.scss';
 
 export default class MovieDetail extends React.Component {
   render() {
+    console.log(this.props.location);
     return (
       <main className="MovieDetail">
         <MovieBannerSection />

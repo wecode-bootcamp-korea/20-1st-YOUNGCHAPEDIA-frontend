@@ -67,6 +67,8 @@ export default class MainSection extends React.Component {
               } = movie;
               return (
                 <MainSectionMovieList
+                  id={id}
+                  goToDetail={this.props.goToDetailPage}
                   movieListRanking={movieListRanking}
                   key={id}
                   title={korean_title}
