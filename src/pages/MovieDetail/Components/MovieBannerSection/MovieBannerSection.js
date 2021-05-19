@@ -11,7 +11,7 @@ export default class MovieBannerSection extends React.Component {
             <div className="movieBannerPoster">
               <img
                 alt="stillCut"
-                src={movieInformation.background_img}
+                src={movieInformation.movie_information.background_img}
                 className="stillCut"
               />
             </div>

@@ -12,8 +12,9 @@ export default class MovieDetail extends React.Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    fetch(`http://10.58.5.25:8000/movies/${id}`)
+    // const id = this.props.match.params.id;
+    // fetch(`http://10.58.5.25:8000/movies/${id}`)
+    fetch(`http://192.168.25.36:8000/movies/1`)
       .then(res => res.json())
       .then(res => this.setState({ movieInformation: res }));
   }
