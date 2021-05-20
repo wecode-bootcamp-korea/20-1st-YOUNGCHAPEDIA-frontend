@@ -1,5 +1,11 @@
 body {
   font-family: 'Noto Sans KR', sans-serif;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 button:hover {

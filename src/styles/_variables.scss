@@ -42,3 +42,11 @@ $wrong-background: #fff0f0;
   justify-content: $just;
   align-items: $align;
 }
+
+$breakpoint: 800px;
+
+@mixin tablet {
+  @media (max-width: #{$breakpoint}) {
+    @content;
+  }
+}
