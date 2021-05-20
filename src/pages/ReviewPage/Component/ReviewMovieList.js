@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import StarRating from '../CommonComponents/StarRating';
+import StarRating from '../../CommonComponents/StarRating';
 import './ReviewMovieList.scss';
 
 export default class ReviewMovieList extends Component {
@@ -27,7 +27,7 @@ export default class ReviewMovieList extends Component {
               </span>
             </div>
             <div className="movieYearCountry">
-              {movieReleaseDate.slice(0, 4)}·{movieCountry}
+              {movieReleaseDate && movieReleaseDate.slice(0, 4)}·{movieCountry}
             </div>
           </div>
           <div className="movieInfoColumn">
