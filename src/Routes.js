@@ -19,14 +19,9 @@ class Routes extends React.Component {
           <Route exact path="/review" component={ReviewPage}></Route>
           <Route exact path="/mypage" component={MyPage}></Route>;
         </Switch>
-        {location.pathname !== '/review' && <Footer />}
+        <Footer />
       </Router>
     );
   }
 }
 export default Routes;
-
-/* global history */
-/* global location */
-/* global window */
-/* eslint no-restricted-globals: ["off"] */

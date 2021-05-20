@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+.easterEgg {
+  @include flexColumnSet(space-between);
+  padding: 50px;
+
+  .easterEggHeader {
+    margin-bottom: 50px;
+    font-weight: 700;
+  }
+
+  .thanksPeople {
+    margin-bottom: 10px;
+    font-size: 0.875rem;
+  }
+}
