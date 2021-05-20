@@ -1,0 +1,46 @@
+{
+  "result": [
+    {
+      "id": 1,
+      "genre": "드라마",
+      "average": 5,
+      "count": 15
+    },
+    {
+      "id": 2,
+      "genre": "모험",
+      "average": 4,
+      "count": 35
+    },
+    {
+      "id": 2,
+      "genre": "액션",
+      "average": 3,
+      "count": 23
+    },
+    {
+      "id": 3,
+      "genre": "코미디",
+      "average": 2,
+      "count": 5
+    },
+    {
+      "id": 4,
+      "genre": "스릴러",
+      "average": 2,
+      "count": 5
+    },
+    {
+      "id": 5,
+      "genre": "가족",
+      "average": 2,
+      "count": 5
+    },
+    {
+      "id": 6,
+      "genre": "추리",
+      "average": 2,
+      "count": 5
+    }
+  ]
+}

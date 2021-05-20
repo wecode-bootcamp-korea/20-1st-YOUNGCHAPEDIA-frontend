@@ -119,11 +119,13 @@ class Navbar extends Component {
             }
           />
         )}
+
         <nav className="topNav">
           <span className="logoMenu">
             <header>
               <Link to="/">
                 <h1>
+                  {/* h1을 두 개 할 수는 없어서 h1안에 span 2개로 했습니다 */}
                   <span>YOUNGCHA</span>
                   <span>PEDIA</span>
                 </h1>
@@ -141,7 +143,7 @@ class Navbar extends Component {
                 placeholder="작품 제목, 배우, 감독을 검색해보세요"
               />
             </label>
-            {isUserLogined ? loginedBtn : logoutedBtn}
+            {isUserLogin ? loginedBtn : logoutedBtn}
           </span>
         </nav>
       </>

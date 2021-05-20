@@ -1,0 +1,30 @@
+@import '../../../styles/variables.scss';
+
+.analyzeStarChart {
+  @include flexColumnSet;
+  padding-top: 50px;
+
+  .starGraphs {
+    @include flexSet(center, flex-end);
+
+    .starGraph {
+      margin: 0 5px;
+      padding: 0 15px;
+      background-color: #fedd63;
+    }
+  }
+
+  .starGraphsLabel {
+    @include flexSet;
+    margin-top: 10px;
+    width: 400px;
+
+    span {
+      padding-right: 15px;
+      width: 20%;
+      color: $list-sub-gray;
+      font-size: 0.625rem;
+      text-align: end;
+    }
+  }
+}

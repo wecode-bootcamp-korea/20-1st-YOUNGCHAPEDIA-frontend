@@ -1,0 +1,54 @@
+@import '../../styles/variables.scss';
+
+.analyzeTestPage {
+  @include flexColumnSet;
+  padding: 100px 0;
+  background-color: $input-background;
+
+  .analyzeHeader {
+    @include flexColumnSet(none, none);
+    padding: 30px;
+    color: white;
+    border-radius: 8px;
+    background: linear-gradient(45deg, $hot-pink, #c3194b);
+
+    div:first-of-type,
+    p {
+      width: 578px;
+      font-weight: 700;
+    }
+
+    div:first-of-type {
+      margin-bottom: 10px;
+      font-size: 2.188rem;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 400;
+
+      span {
+        margin-right: 5px;
+        font-weight: 700;
+      }
+    }
+
+    div:last-of-type {
+      @include flexSet(flex-start);
+      padding-top: 90px;
+      width: 578px;
+
+      .analyzeProfileImg {
+        margin-right: 10px;
+        color: $line;
+        font-size: 2.5rem;
+
+        &::before {
+          background-color: $section-aside-text;
+          border-radius: 50%;
+        }
+      }
+
+      span {
+        font-size: 1.063rem;
+      }
+    }
+  }
+}
