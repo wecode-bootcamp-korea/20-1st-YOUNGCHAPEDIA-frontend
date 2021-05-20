@@ -1,0 +1,20 @@
+{
+  "result": [
+    {
+      "title": "영화제목",
+      "thumbnail": " 해당 영화의 썸네일 url"
+    },
+    {
+      "title": "영화제목",
+      "thumbnail": " 해당 영화의 썸네일 url"
+    },
+    {
+      "title": "영화제목",
+      "thumbnail": " 해당 영화의 썸네일 url"
+    },
+    {
+      "title": "영화제목",
+      "thumbnail": " 해당 영화의 썸네일 url"
+    }
+  ]
+}

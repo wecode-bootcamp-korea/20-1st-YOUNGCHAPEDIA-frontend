@@ -1,0 +1,154 @@
+@import '../../styles/variables.scss';
+
+.myPageSection {
+  @include flexColumnSet;
+  padding: 62px 0;
+  background-color: $section-background;
+
+  .myPageContainer {
+    margin: 30px 0;
+    height: 620px;
+    background-color: white;
+    border: 1px solid $line;
+    border-radius: 7px;
+
+    .myHeaderShadow {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      left: 0px;
+      height: 50px;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+    }
+
+    .myHeader {
+      position: relative;
+      width: 640px;
+      height: 200px;
+      background: linear-gradient(#e76d90, #e882a3);
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+
+      .fa-cog {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        color: white;
+        font-size: 1.25rem;
+      }
+    }
+
+    .myContents {
+      @include flexColumnSet;
+
+      .myProfile {
+        position: relative;
+        @include flexColumnSet;
+        background-color: white;
+
+        .myProfileColumn {
+          @include flexSet(flex-start);
+          width: 598px;
+
+          &:nth-of-type(2) {
+            margin-top: 40px;
+            height: 30px;
+            font-size: 1.563rem;
+            font-weight: 700;
+          }
+
+          &:nth-of-type(3) {
+            height: 35px;
+            color: $menu-normal-text;
+            font-size: 0.9375rem;
+          }
+        }
+
+        .myPageProfileImg {
+          position: absolute;
+          top: -25px;
+          left: 0;
+          color: $line;
+          font-size: 3.75rem;
+
+          &::before {
+            background-color: $section-aside-text;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .analyzeTest {
+        @include flexSet(flex-start);
+        margin: 20px 0;
+        width: 598px;
+        height: 48px;
+        border-top: 1px solid $line;
+        border-bottom: 1px solid $line;
+
+        .analyzeBtn {
+          @include flexSet;
+          font-size: 1.063rem;
+
+          .fa-chart-bar {
+            content: '\f080';
+            margin-right: 10px;
+            color: tomato;
+            font-size: 1.563rem;
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            background: linear-gradient(50deg, tomato 40%, gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+      }
+
+      .contentBanners {
+        .myMovies {
+          position: relative;
+          @include flexColumnSet(none, none);
+          height: 200px;
+          width: 600px;
+          background: linear-gradient(70deg, #82d957, #bbe772);
+          border-radius: 8px;
+          color: white;
+
+          &::before {
+            content: '\f008';
+            position: absolute;
+            top: 0px;
+            right: 30px;
+            color: white;
+            font-size: 12.5rem;
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            opacity: 0.5;
+            overflow: hidden;
+          }
+
+          .contentBannersColumn {
+            padding: 8px 10px 0 10px;
+
+            &:first-of-type {
+              font-size: 1.063rem;
+            }
+
+            &:nth-of-type(2) {
+              font-size: 1.188rem;
+            }
+
+            &:last-of-type {
+              margin-top: 90px;
+              font-size: 0.8125rem;
+
+              .myPageWantedCount {
+                margin-left: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
