@@ -3,7 +3,7 @@
 .formHeader {
   margin: 24px 0;
   height: 22px;
-  font-size: 17px;
+  font-size: 1.063rem;
   font-weight: 700;
 }
 
@@ -28,7 +28,7 @@
         height: 44px;
         border-radius: 7px;
         color: $search-bar-text;
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 500;
       }
 
@@ -42,7 +42,7 @@
         background-color: $info-sub-text;
         border-radius: 50%;
         color: $wrong-background;
-        font-size: 13px;
+        font-size: 0.8125rem;
       }
 
       .warningIcon {
@@ -53,7 +53,7 @@
         border: 1px solid $wrong-red;
         border-radius: 50%;
         color: $wrong-red;
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 700;
         text-align: center;
       }
@@ -79,7 +79,7 @@
       padding: 6px 12px 4px 12px;
       width: 335px;
       color: $wrong-red;
-      font-size: 13px;
+      font-size: 0.8125rem;
     }
   }
 
@@ -96,7 +96,7 @@
     background-color: $hot-pink;
     border-radius: 5px;
     color: $white;
-    font-size: 16px;
+    font-size: 1rem;
     text-align: center;
   }
 }
@@ -104,7 +104,7 @@
 .lostPassword,
 .suggestSignIn {
   color: $list-sub-gray;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 400;
 }
 

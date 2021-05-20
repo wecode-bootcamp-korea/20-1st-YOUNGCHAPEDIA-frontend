@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import API_URLS from '../../config';
 import ModalLogoLayout from '../CommonComponents/ModalLogoLayout';
 import './LoginSignInForm.scss';
 
-export default class LoginSignInForm extends Component {
+class LoginSignInForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,9 +19,38 @@ export default class LoginSignInForm extends Component {
 
   requestLogin = e => {
     e.preventDefault();
-    fetch(API_URLS.SIGNIN, {
+    fetch(API_URLS.LOGIN, {
       method: 'POST',
       body: JSON.stringify({
+        email: this.state.id,
+        password: this.state.pw,
+      }),
+    })
+      .then(res => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        if (res.status === 400) {
+          alert('아이디는 nini@gmail.com 비밀번호는 12345678a@입니다');
+        }
+      })
+      .then(res => {
+        if (res) {
+          localStorage.setItem('TOKEN', res.token);
+          this.props.checkUserLogined();
+          this.props.history.push('/review');
+        } else {
+          alert('로그인 하세요');
+        }
+      });
+  };
+
+  requestSignIn = e => {
+    e.preventDefault();
+    fetch(API_URLS.SIGNUP, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: this.state.name,
         email: this.state.id,
         password: this.state.pw,
       }),
@@ -34,10 +64,12 @@ export default class LoginSignInForm extends Component {
         if (res) {
           localStorage.setItem('TOKEN', res.token);
           this.props.checkUserLogined();
-          this.props.history.push('/review');
-        } else {
-          alert('로그인 하세요');
+          this.props.closeModal();
+          alert('회원가입 성공');
         }
+      })
+      .catch(error => {
+        alert(error);
       });
   };
 
@@ -96,10 +128,11 @@ export default class LoginSignInForm extends Component {
   render() {
     const { id, pw, name, isOnceBlured } = this.state;
     //default : LoginBtn 클릭했을 때 (false)
-    const { isSignBtnClicked } = this.props;
+    const { isSignBtnClicked, goToLoginModal, goToSignInModal } = this.props;
     const {
       handleInput,
       requestLogin,
+      requestSignIn,
       handleDeleteBtn,
       checkIdValid,
       checkPwValid,
@@ -214,15 +247,15 @@ export default class LoginSignInForm extends Component {
           {isSignBtnClicked ? (
             <button
               className="loginSignInBtn"
-              disabled={!isIdPwBothValid || !isInfoAllValid}
-              onClick={requestLogin}
+              disabled={!isInfoAllValid}
+              onClick={requestSignIn}
             >
               회원가입
             </button>
           ) : (
             <button
               className="loginSignInBtn"
-              disabled={!isIdPwBothValid || !isInfoAllValid}
+              disabled={!isIdPwBothValid}
               onClick={requestLogin}
             >
               로그인
@@ -231,15 +264,19 @@ export default class LoginSignInForm extends Component {
         </form>
         {isSignBtnClicked ? (
           <p className="suggestSignIn suggestLogin">
-            이미 가입하셨나요?<span className="loginSignInLink">로그인</span>
+            이미 가입하셨나요?
+            <span className="loginSignInLink" onClick={goToLoginModal}>
+              로그인
+            </span>
           </p>
         ) : (
           <>
             <p className="lostPassword">비밀번호를 잊어버리셨나요?</p>
-
             <p className="suggestSignIn">
               계정이 없으신가요?
-              <span className="loginSignInLink">회원가입</span>
+              <span className="loginSignInLink" onClick={goToSignInModal}>
+                회원가입
+              </span>
             </p>
           </>
         )}
@@ -247,3 +284,5 @@ export default class LoginSignInForm extends Component {
     );
   }
 }
+
+export default withRouter(LoginSignInForm);
