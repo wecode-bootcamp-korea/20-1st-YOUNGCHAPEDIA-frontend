@@ -15,7 +15,6 @@ class Navbar extends Component {
       modalOpened: false,
     };
   }
-
   checkUserLogined = () => {
     let token = localStorage.getItem('TOKEN');
     if (token) {
@@ -24,27 +23,23 @@ class Navbar extends Component {
       });
     }
   };
-
   closeModal = () => {
     this.setState({
       modalOpened: false,
     });
   };
-
   clickSignIn = () => {
     this.setState({
       modalOpened: true,
       isSignBtnClicked: true,
     });
   };
-
   clickLogin = () => {
     this.setState({
       modalOpened: true,
       isSignBtnClicked: false,
     });
   };
-
   clickLogout = () => {
     localStorage.removeItem('TOKEN');
     localStorage.removeItem('NAME');
@@ -53,19 +48,16 @@ class Navbar extends Component {
     });
     this.props.history.push('/');
   };
-
   goToLoginModal = () => {
     this.setState({
       isSignBtnClicked: false,
     });
   };
-
   goToSignInModal = () => {
     this.setState({
       isSignBtnClicked: true,
     });
   };
-
   render() {
     const { isUserLogined, isSignBtnClicked, modalOpened } = this.state;
     const {
@@ -102,7 +94,6 @@ class Navbar extends Component {
         </button>
       </>
     );
-
     return (
       <>
         {modalOpened && (
@@ -119,13 +110,11 @@ class Navbar extends Component {
             }
           />
         )}
-
         <nav className="topNav">
           <span className="logoMenu">
             <header>
               <Link to="/">
                 <h1>
-                  {/* h1을 두 개 할 수는 없어서 h1안에 span 2개로 했습니다 */}
                   <span>YOUNGCHA</span>
                   <span>PEDIA</span>
                 </h1>
@@ -143,12 +132,11 @@ class Navbar extends Component {
                 placeholder="작품 제목, 배우, 감독을 검색해보세요"
               />
             </label>
-            {isUserLogin ? loginedBtn : logoutedBtn}
+            {isUserLogined ? loginedBtn : logoutedBtn}
           </span>
         </nav>
       </>
     );
   }
 }
-
 export default withRouter(Navbar);
